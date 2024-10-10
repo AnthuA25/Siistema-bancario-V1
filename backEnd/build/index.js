@@ -16,9 +16,12 @@ const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const testConnection_1 = require("./utils/testConnection");
 const database_1 = require("./config/database");
+const routes_1 = __importDefault(require("./routes"));
 require("./models/association");
 dotenv_1.default.config();
 const app = (0, express_1.default)();
+app.use(express_1.default.json());
+app.use(routes_1.default);
 const PORT = 8000;
 app.get('/', (req, res) => {
     res.send('¡Bienvenido a la API!');
@@ -27,7 +30,7 @@ const startServer = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield (0, testConnection_1.testConnection)();
         console.log('Database connected');
-        yield database_1.sequelize.sync({ force: false });
+        yield database_1.sequelize.sync();
         console.log('Database synchronized successfully!');
         app.listen(PORT, () => {
             console.log(`Server running on port ${PORT}`);
