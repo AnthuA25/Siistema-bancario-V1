@@ -16,11 +16,11 @@ User.init(
             field: 'id_user',
         },
         username: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(100),
             allowNull: false,
         },
         password: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(50),
             allowNull: false,
         },
     },
