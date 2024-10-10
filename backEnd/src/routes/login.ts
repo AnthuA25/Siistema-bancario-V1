@@ -1,4 +1,4 @@
-import jwt from 'jsonwebtoken';
+/*import jwt from 'jsonwebtoken';
 import { Request, Response } from 'express';
 import User from '../models/User'
 const bcrypt = require('bcrypt');
@@ -31,4 +31,4 @@ export const loginFunction = async (req: Request, res: Response) => {
             console.error('Error al hacer login:', error);
             return res.status(500).send('Ocurrio un error');   
         }
-    };
+    };*/

@@ -3,17 +3,19 @@ import dotenv from 'dotenv';
 import {testConnection} from './utils/testConnection'
 import { sequelize } from './config/database';
 import { User, Account, Transaction } from './models';
+import router from './routes';
 import './models/association';
 
 dotenv.config();
 const app: Application = express();
+app.use(express.json())
+app.use(router)
 const PORT: number = 8000;
 
 app.get('/', (req: Request, res: Response) => {
   res.send('¡Bienvenido a la API!');
 });
-//Registrando la ruta de login
-app.post('/login', loginFunction);
+
 
 const startServer = async () => {
     try {
