@@ -12,11 +12,11 @@ User.init({
         field: 'id_user',
     },
     username: {
-        type: sequelize_1.DataTypes.STRING,
+        type: sequelize_1.DataTypes.STRING(100),
         allowNull: false,
     },
     password: {
-        type: sequelize_1.DataTypes.STRING,
+        type: sequelize_1.DataTypes.STRING(50),
         allowNull: false,
     },
 }, {
