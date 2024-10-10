@@ -1,19 +1,25 @@
 import { DataTypes, Model } from "sequelize";
-import sequelize from "../config/database";
+import {sequelize} from "../config/database";
 
 class User extends Model {
-    public id!: number; 
-    public name!: string; 
+    public id_user!: number; 
+    public username!: string; 
+    public password!: string; 
 }
 
 User.init(
     {
-        id: {
+        id_user: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true,
+            field: 'id_user',
         },
         username: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        password: {
             type: DataTypes.STRING,
             allowNull: false,
         },
@@ -22,7 +28,7 @@ User.init(
         sequelize,
         modelName: "User",
         tableName: "users",
-        timestamps: true,
+        timestamps: false,
     }
 );
 
