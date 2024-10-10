@@ -12,6 +12,8 @@ const PORT: number = 8000;
 app.get('/', (req: Request, res: Response) => {
   res.send('¡Bienvenido a la API!');
 });
+//Registrando la ruta de login
+app.post('/login', loginFunction);
 
 const startServer = async () => {
     try {
