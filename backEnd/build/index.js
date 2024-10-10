@@ -27,7 +27,7 @@ const startServer = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield (0, testConnection_1.testConnection)();
         console.log('Database connected');
-        yield database_1.sequelize.sync();
+        yield database_1.sequelize.sync({ force: false });
         console.log('Database synchronized successfully!');
         app.listen(PORT, () => {
             console.log(`Server running on port ${PORT}`);

@@ -12,4 +12,5 @@ exports.sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proc
     host: 'localhost',
     port: 5433,
     dialect: 'postgres',
+    logging: false,
 });
