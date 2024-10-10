@@ -2,7 +2,6 @@ import { DataTypes, Model } from "sequelize";
 import {sequelize} from "../config/database";
 
 class User extends Model {
-    public id_user!: number; 
     public username!: string; 
     public password!: string; 
 }
