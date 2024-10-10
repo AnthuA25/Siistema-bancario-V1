@@ -10,6 +10,6 @@ const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 exports.sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
     host: 'localhost',
-    port: 5433,
+    port: process.env.DB_PORT,
     dialect: 'postgres',
 });
