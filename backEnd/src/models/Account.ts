@@ -3,7 +3,6 @@ import { sequelize } from "../config/database";
 import User from "./User";
 
 class Account extends Model {
-    public id_account!: number;
     public id_user!: number; 
     public account_balance!: number;
 }
