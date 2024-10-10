@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import {testConnection} from './utils/testConnection'
 import { sequelize } from './config/database';
 import { User, Account, Transaction } from './models';
+import './models/association';
 
 dotenv.config();
 const app: Application = express();
