@@ -5,21 +5,28 @@
   "main": "index.js",
   "scripts": {
     "start": "npx tsc && node ./build/index.js",
+    "build": "tsc && cp ./src/*.js ./build",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "ts-node-dev --respawn ./src/index.ts"
+    "dev": "ts-node src/index.ts",
+    "dev:watch": "nodemon --exec ts-node src/index.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.5",
     "express": "^4.21.1",
     "jsonwebtoken": "^9.0.2",
+    "pg": "^8.13.0",
+    "pg-hstore": "^2.3.4",
     "sequelize": "^6.37.4"
   },
   "devDependencies": {
     "@types/express": "^5.0.0",
     "@types/node": "^22.7.5",
+    "@types/sequelize": "^4.28.20",
+    "nodemon": "^3.1.7",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.6.3"
