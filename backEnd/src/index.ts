@@ -1,23 +1,28 @@
 import express, { Application, Request, Response } from 'express';
 import dotenv from 'dotenv';
-import sequelize from './config/database';
+import {testConnection} from './utils/testConnection'
+import { sequelize } from './config/database';
+import { User, Account, Transaction } from './models';
+import './models/association';
+
 dotenv.config();
 const app: Application = express();
 const PORT: number = 8000;
 
-app.use(express.json());
-console.log("DB_HOST:", process.env.DB_HOST);
-console.log("DB_USER:", process.env.DB_USER);
-console.log("DB_PASSWORD:", process.env.DB_PASSWORD);
-console.log("DB_NAME:", process.env.DB_NAME);
-console.log("DB_PORT:", process.env.DB_PORT);
+app.get('/', (req: Request, res: Response) => {
+  res.send('¡Bienvenido a la API!');
+});
+
 const startServer = async () => {
     try {
-      await sequelize.authenticate();
+      await testConnection();
       console.log('Database connected');
-  
+
+      await sequelize.sync();
+      console.log('Database synchronized successfully!');
+
       app.listen(PORT, () => {
-        console.log('Server running on port 8000');
+        console.log(`Server running on port ${PORT}`);
       });
     } catch (error) {
       console.error('Unable to connect to the database:', error);
