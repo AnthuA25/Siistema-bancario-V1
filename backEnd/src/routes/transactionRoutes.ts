@@ -4,7 +4,7 @@ import { transactionHandler, depositTransaction, withdrawalTransaction, transfer
 const router = express.Router()
 
 router.get('/', transactionHandler);
-router.post('/deposit', depositTransaction);
+router.post('/deposit/:id_account', depositTransaction);
 router.post('/withdrawal', withdrawalTransaction);
 router.post('/transfer', transferTransactionHandler);
 

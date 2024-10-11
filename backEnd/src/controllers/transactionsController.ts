@@ -20,8 +20,9 @@ const transactionHandler: RequestHandler = async (req, res) => {
 
 const depositTransaction: RequestHandler = async (req, res) => {
   try {
-    const { accId, amount } = req.body;
-    const newDeposit = await createDeposit(accId, +amount);
+    const { id_account } = req.params
+    const { amount } = req.body;
+    const newDeposit = await createDeposit(id_account, +amount);
     res.status(201).json(newDeposit);
   } catch (error) {
     console.error("Error creating deposit transaction:", error);
