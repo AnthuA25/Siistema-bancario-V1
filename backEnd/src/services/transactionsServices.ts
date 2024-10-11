@@ -10,9 +10,9 @@ const seeTransactions = async () => {
   return res;
 };
 
-const createDeposit = async (accId: number, amount: number) => {
+const createDeposit = async (id_account: string, amount: number) => {
   const res = initResponse<Transaction>();
-  const account = await Account.findByPk(accId); // Replace with the account ID you want to deposit into
+  const account = await Account.findOne({where: { id_account }}); // Replace with the account ID you want to deposit into
   if (!account) {
     res.error = "Account not found";
     return res;
@@ -20,9 +20,8 @@ const createDeposit = async (accId: number, amount: number) => {
 
   await account.increment("account_balance", { by: amount });
   const newTransaction = await Transaction.create({
-    id_account: accId,
     amount: amount,
-    id_target_account: accId,
+    id_target_account: id_account,
     transaction_type: "Deposit",
   });
 
