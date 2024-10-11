@@ -3,6 +3,7 @@ import { sequelize } from "../config/database";
 import Account from "./Account"; 
 
 class Transaction extends Model {
+    public id?: number; 
     public id_account!: number; // Clave foránea
     public amount!: number;
     public id_target_account!: number;

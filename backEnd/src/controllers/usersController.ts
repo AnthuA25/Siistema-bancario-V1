@@ -1,6 +1,6 @@
 import { RequestHandler } from "express";
 import dotenv from "dotenv";
-import { createUserService, seeUsers, userById, deleteUserService } from "../services/userService";
+import { createUserService, seeUsers,  userById, deleteUserService } from "../services/userService";
 dotenv.config();
 
 const getAllUser: RequestHandler = async (req, res) => {

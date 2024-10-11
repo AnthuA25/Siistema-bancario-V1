@@ -1,8 +1,31 @@
-import { Account } from "../models";
+import  Account  from "../models/Account";
+import { initResponse } from "../helper"
 
 const getAccount = async (id_account: number) => {
     const getAccount = await Account.findByPk(id_account);
     return getAccount;
 };
 
-export { getAccount };
+const deleteAccount = async (id_account: string ) => {
+    const res = initResponse<Account>();
+
+    const accountId = parseInt(id_account, 10);
+    if (isNaN(accountId)) {
+        res.error = "Invalid account ID";
+        return res;
+    } 
+
+    const account = await Account.findOne({ where: { id_account } });
+    if (!account) {
+        res.error = "Account not found";
+        return res;
+    }
+    await Account.destroy({ where: {  id_account } });
+    res.success = true;
+    res.data = account;
+    return res;
+}
+
+
+
+export { getAccount, deleteAccount };
