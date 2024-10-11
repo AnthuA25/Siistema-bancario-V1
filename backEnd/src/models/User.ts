@@ -2,6 +2,7 @@ import { DataTypes, Model } from "sequelize";
 import {sequelize} from "../config/database";
 
 class User extends Model {
+    public id_user?:number;
     public username!: string; 
     public password!: string; 
 }
@@ -17,9 +18,10 @@ User.init(
         username: {
             type: DataTypes.STRING(100),
             allowNull: false,
+            unique: true,
         },
         password: {
-            type: DataTypes.STRING(50),
+            type: DataTypes.STRING(100),
             allowNull: false,
         },
     },

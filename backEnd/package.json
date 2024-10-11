@@ -7,13 +7,14 @@
     "start": "npx tsc && node ./build/index.js",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "ts-node src/index.ts",
+    "dev": "nodemon --exec ts-node src/index.ts",
     "dev:watch": "nodemon --exec ts-node src/index.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/bcrypt": "^5.0.2",
     "bcrypt": "^5.1.1",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
