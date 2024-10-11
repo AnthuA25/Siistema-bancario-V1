@@ -3,11 +3,11 @@ import transactions from './transactionRoutes';
 import usersRouter from './userRouters';
 import accountRouter from './accountRoutes';
 
-const app = express();
-app.use(express.json());  
-app.use('/', transactions); 
-app.use('/', usersRouter);  
-app.use('/', accountRouter);
+const router = express.Router();
 
-export default app;
+router.use('/transactions', transactions);
+router.use('/account', accountRouter)
+router.use('/users',usersRouter);
+
+export default router;
 
