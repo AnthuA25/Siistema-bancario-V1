@@ -56,4 +56,48 @@ const createWithdrawal = async (accId: number, amount: number) => {
   return res;
 };
 
-export { seeTransactions, createDeposit, createWithdrawal };
+const transferTransaction = async (fromAccountId: number, toAccountId: number, amount: number) => {
+  const res = initResponse<Transaction>();
+
+  if (!fromAccountId || !toAccountId || !amount) {
+      res.error = 'Datos inválidos';
+      return res;
+  }
+
+  try {
+      const fromAccount = await Account.findByPk(fromAccountId);
+      const toAccount = await Account.findByPk(toAccountId);
+
+      if (!fromAccount || !toAccount) {
+          res.error = 'Una o ambas cuentas no son válidas';
+          return res;
+      }
+
+      if (fromAccount.account_balance < amount) {
+          res.error = 'Fondos insuficientes en la cuenta de origen';
+          return res;
+      }
+
+      fromAccount.account_balance -= amount;
+      toAccount.account_balance += amount;
+
+      await fromAccount.save();
+      await toAccount.save();
+
+      const newTransaction = await Transaction.create({
+          id_account: fromAccountId,
+          amount: amount,
+          id_target_account: toAccountId,
+          transaction_type: 'transfer',
+      });
+
+      res.success = true;
+      res.data = newTransaction;
+      return res;
+  } catch (error) {
+      res.error = 'Error durante la transferencia';
+      return res;
+  }
+};
+
+export { seeTransactions, createDeposit, createWithdrawal, transferTransaction };
