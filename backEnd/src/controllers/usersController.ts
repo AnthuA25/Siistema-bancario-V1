@@ -1,5 +1,7 @@
 import { RequestHandler } from "express";
-import { createUserService, seeUsers,userById } from "../services/userService";
+import dotenv from "dotenv";
+import { createUserService, seeUsers, userById, deleteUserService } from "../services/userService";
+dotenv.config();
 
 const getAllUser: RequestHandler = async (req, res) => {
     try {
@@ -10,7 +12,7 @@ const getAllUser: RequestHandler = async (req, res) => {
     }
 };
 
-const postUser: RequestHandler = async(req, res)=>{
+const postUser: RequestHandler = async (req, res) => {
     try {
         const { username, password } = req.body;
         if (!username || !password) {
@@ -20,7 +22,7 @@ const postUser: RequestHandler = async(req, res)=>{
         const existingUser = await userById(username);
 
         if (existingUser) {
-            res.status(400).json({ message: "Username already exists" }); 
+            res.status(400).json({ message: "Username already exists" });
             return;
         }
 
@@ -34,5 +36,32 @@ const postUser: RequestHandler = async(req, res)=>{
         res.status(500).json({ message: "An error occurred while creating the user" });
     }
 }
+const deleteUserByUsername: RequestHandler = async (req, res) => {
+    try {
+        const { username } = req.params;
+        if (!username) {
+            res.status(400).json({ message: 'Username parameter is required' });
+            return;
+        }
+        
+        const existingUser = await userById(username);
+        if (!existingUser) {
+            res.status(404).json({ message: 'User not found' });
+            return;
+        }
 
-export { getAllUser,postUser};
+        const result = await deleteUserService(username);
+
+        if (result === 1) { 
+            res.status(200).json({ message: 'User deleted successfully' });
+            return;
+        }
+
+        res.status(400).json({ message: 'Unable to delete user' });
+    } catch (error) {
+        res.status(500).json({ message: "An error occurred while deleting the user", error });
+    }
+}
+
+
+export { getAllUser, postUser, deleteUserByUsername };
