@@ -26,3 +26,14 @@ export const userById = async(username:string) =>{
     }
 };
 
+export const deleteUserService = async (username:string) => {
+    try {
+        const user = await User.destroy({
+            where: { username }, 
+          });
+        return user;
+      } catch (error:any) {
+        throw new Error('Error deleting user: ' + error.message);
+      }
+};
+
