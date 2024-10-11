@@ -3,8 +3,8 @@ import { transactionHandler, depositTransaction, withdrawalTransaction } from '.
 
 const router = express.Router()
 
-router.get('/transaction', transactionHandler);
-router.post('/transaction/deposit', depositTransaction);
-router.post('/transaction/withdrawal', withdrawalTransaction);
+router.get('/', transactionHandler);
+router.post('/deposit', depositTransaction);
+router.post('/withdrawal', withdrawalTransaction);
 
 export default router
