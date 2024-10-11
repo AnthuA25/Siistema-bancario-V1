@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.use('/transactions', transactions);
 router.use('/account', accountsRouter)
-router.use('/',usersRouter);
+router.use('/users',usersRouter);
 
 export default router;
 

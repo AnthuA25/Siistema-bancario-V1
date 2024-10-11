@@ -1,9 +1,10 @@
 import express from 'express'
-import { postUser, getAllUser } from '../controllers/usersController';
+import { postUser, getAllUser, deleteUserByUsername } from '../controllers/usersController';
 
 const router = express.Router()
 
-router.get('/users', getAllUser);
-router.post('/user',postUser);
+router.get('/all', getAllUser);
+router.post('/createuser',postUser);
+router.delete('/:username',deleteUserByUsername)
 
 export default router

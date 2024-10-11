@@ -1,6 +1,11 @@
 import  Account  from "../models/Account";
 import { initResponse } from "../helper"
 
+const getAccount = async (id_account: number) => {
+    const getAccount = await Account.findByPk(id_account);
+    return getAccount;
+};
+
 const deleteAccount = async (id_account: string ) => {
     const res = initResponse<Account>();
 
@@ -21,4 +26,6 @@ const deleteAccount = async (id_account: string ) => {
     return res;
 }
 
-export { deleteAccount }
+
+
+export { getAccount, deleteAccount };
