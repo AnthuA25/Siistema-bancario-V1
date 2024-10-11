@@ -20,6 +20,7 @@ const createDeposit = async (id_account: string, amount: number) => {
 
   await account.increment("account_balance", { by: amount });
   const newTransaction = await Transaction.create({
+    id_account: id_account,
     amount: amount,
     id_target_account: id_account,
     transaction_type: "Deposit",
