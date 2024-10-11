@@ -3,9 +3,9 @@ import { deleteAnAccount, accountInfoHandler } from '../controllers/accountContr
 
 const router = express.Router()
 
-router.get('/');
+
+router.get('/account/:id', accountInfoHandler);
 router.delete('/:id_account', deleteAnAccount);
-router.get('/id', accountInfoHandler);
 
 export default router
 
