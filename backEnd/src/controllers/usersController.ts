@@ -1,5 +1,5 @@
 import { RequestHandler } from "express";
-import { createUserService, seeUsers,userById } from "../services/userService";
+import { createUserService, seeUsers, userById } from "../services/userService";
 
 const getAllUser: RequestHandler = async (req, res) => {
     try {
