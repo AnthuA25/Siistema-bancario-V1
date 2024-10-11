@@ -1,11 +1,13 @@
 import express from 'express';
 import transactions from './transactionRoutes';
 import usersRouter from './userRouters';
+import accountRouter from './accountRoutes';
 
-const router = express.Router();
+const app = express();
+app.use(express.json());  
+app.use('/', transactions); 
+app.use('/', usersRouter);  
+app.use('/', accountRouter);
 
-router.use('/', transactions);
-router.use('/', usersRouter);
-
-export default router;
+export default app;
 
