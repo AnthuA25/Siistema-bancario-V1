@@ -1,5 +1,5 @@
 import express from 'express'
-import { deleteAnAccount, accountInfoHandler } from '../controllers/accountCrontroller'
+import { deleteAnAccount, accountInfoHandler } from '../controllers/accountController'
 
 const router = express.Router()
 
